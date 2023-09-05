@@ -6,7 +6,7 @@ This project started when PHP went from 7.4 to 8.1 and the K5N calendar broke. T
 
 How the program works: It starts by assuming you've already brought the calendar up and gets previous vars - ie month, year, etc. If not then "now".
 
-In the background are two Mysql tables:
+There are two Mysql tables:
 
     CREATE TABLE `cal_entry` (
      `id` int NOT NULL AUTO_INCREMENT,
@@ -33,7 +33,7 @@ and
 
 The program has 2 locations:  Home and a sub-directory for administration controlled by htaccess.
 
-I was brought up being told if your table, in a relational database, was over 10 columns long - go back to the drawing board and start over. (a general rule)  And that Int searches were way faster than Char searches.  To that end cal_entry has only that needed to display the calendar entry.  The table cal_misc contains information for the Admin and any background apps - IE notifications.
+I was brought up being told if your table, in a relational database, was over 10 columns long - go back to the drawing board and start over. (a general rule)  And that Int searches were way faster than Char searches.  To that end the table cal_entry has only that needed to display the calendar entry.  The table cal_misc contains information for the Admin and any background apps - IE notifications.
 
 So after the initial "where were we" the program uses the system "cal" program to get an image of the month in question - day of week for day 1, days in the month.  There are two types of entries: One time events IE a wedding and Repeating events IE Boy Scouts every Tuesday evening.
 
