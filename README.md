@@ -1,5 +1,6 @@
-# bfcalendar
+
 # BlackForestCalendar
+First post - hope I got everything right.
 
 This project started when PHP went from 7.4 to 8.1 and the K5N calendar broke. There is a minor difference between K5N and this calendar.  K5N uses extensive use of CSS, extensive use of Javascript and lots of nested <div's.  This calendar attempts to go the other way. KISS.
 
