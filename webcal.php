@@ -81,7 +81,7 @@ function do_day($day, $darray, $date, $today)
 }
 
 # ----- main () -----
-$Home = "bfcommunityclub.org/webcal";
+$Home = "[yourhost]/webcal";
 date_default_timezone_set('America/Denver');
 
 if ( isset ($_GET['month']))
