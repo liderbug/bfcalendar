@@ -41,7 +41,7 @@ So there are 2 Mysql queries - where "once" and where "not once".  The date is "
 Feel free to modify, change, improve - but please KISS
 cal@blkfst.com
 
-   # time php index.php
+   time php index.php
    real    0m0.058s
    user    0m0.027s
    sys     0m0.023s
