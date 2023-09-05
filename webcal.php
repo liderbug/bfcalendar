@@ -174,7 +174,7 @@ array(), array(), array(), array(), array(), array(), array(), array(), array(),
 	       );
 
 
-include 'dbconnect.php';
+include './dbconnect.php';
 $getcat = "";
 switch ($setcat) {
     case 0: $getcat = ""; break;
