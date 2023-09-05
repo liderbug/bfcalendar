@@ -1,0 +1,14 @@
+Install instructions: At least the way I did it. 
+
+    Create a subdir "webcal"
+    mv webcal.php to webcal/index.php
+    mv [dot]dbconnect.php to webcal/.dbconnect.php and configure
+    Create a subdir webcal/.s0m3randOmStrIng  - [dot]some...
+    Edit index.php - find "admin" and change href to [.some random string]
+    cd to some random string and mv edit.php and new.php there
+    Also move subdir.php to randomstring and rename to index.php
+    Create you DB and install the 2 DB tables.
+    Find a right and left arrow.gif for prev month and next month images
+    Spend the next hour or two debugging what I've missed ...
+
+
