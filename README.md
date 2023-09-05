@@ -40,9 +40,10 @@ So after the initial "where were we" the program uses the system "cal" program t
 So there are 2 Mysql queries - where "once" and where "not once".  The date is "push"ed in to an array by day.  Then each day is sorted by time.  Then, via "<table..." the calendar is created 7x5.
 
 Feel free to modify, change, improve - but please KISS
+
 cal@blkfst.com
 
-   time php index.php
+   time php index.php<br>
    real    0m0.058s
    user    0m0.027s
    sys     0m0.023s
