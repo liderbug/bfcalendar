@@ -44,6 +44,6 @@ Feel free to modify, change, improve - but please KISS
 cal@blkfst.com
 
    time php index.php<br>
-   real    0m0.058s
-   user    0m0.027s
-   sys     0m0.023s
+   real    0m0.058s<br>
+   user    0m0.027s<br>
+   sys     0m0.023s<br>
