@@ -2,6 +2,7 @@
 <head>
 <?php date_default_timezone_set('America/Denver'); ?>
 # this code goes in a subdirectory for use as the admin
+# suggested - this directory is named [dot]aHidd3nD1rectory#%!
 <script>
 function ae(value, day)
 {
