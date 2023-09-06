@@ -168,7 +168,7 @@ $som = strtotime(sprintf("%4d%02d%02d", $year, $m1, "01"));
 $eom = strtotime(sprintf("%4d%02d%02d235959", $year, $m1, $last));
 $now = strtotime("now");
 
-$carray = array_fill(0, 31, array_fill(0,0, ''));
+$carray = array_fill(0, 32, array_fill(0,0, ''));
 
 include './dbconnect.php';
 $getcat = "";
