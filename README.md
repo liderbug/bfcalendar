@@ -37,7 +37,7 @@ I was brought up being told if your table, in a relational database, was over 10
 
 So after the initial "where were we" the program uses the system "cal" program to get an image of the month in question - day of week for day 1, days in the month.  There are two types of entries: One time events IE a wedding and Repeating events IE Boy Scouts every Tuesday evening.
 
-So there are 2 Mysql queries - where "once" and where "not once".  The date is "push"ed in to an array by day.  Then each day is sorted by time.  Then, via "<table..." the calendar is created 7x5.
+So there are 2 Mysql queries - where "once" and where "not once".  The date is "push"ed in to an array by day.  Then each day is sorted by time.  lastly, via "<table..." the calendar is created 7x5.
 
 Feel free to modify, change, improve - but please KISS
 
