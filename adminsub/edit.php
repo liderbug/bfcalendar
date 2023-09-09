@@ -81,19 +81,15 @@
              $t = substr($cols[$n],0,1);
              $c = substr($cols[$n],1);
              $v = htmlspecialchars($_POST[$cols[$n]]);
-             if ( ! strstr ($c, "id"))
+             switch ($c)
              {
-               if ( strstr ($c, "date"))
-               {
-                 $s = strtotime($v);
-                 $qud .= "$t.$c=$s, \n";
-               } else {
-                 if ( is_numeric($cols[$n]) )
-                      $qud .= "$t.$c=$v, \n";
-               else
-                      $qud .= "$t.$c='$v', \n";
-               }
-              }
+               case 'id': break;
+               case 'date': $s = strtotime($v); $qud .= "$t.$c=$s, \n"; break;
+               case 'end_date': $s = strtotime($v); $qud .= "$t.$c=$s, \n"; break;
+               case ( is_numeric($cols[$n]) ): $qud .= "$t.$c=$v, \n"; break;
+               case 'mod_date': $qud .= "$t.$c=" . strtotime("now") . ", \n"; break;
+               default: $qud .= "$t.$c='$v', \n"; break;
+             }
             }
             $qud = preg_replace("/,([^,]+)$/", "", $qud);
             $qud .= " WHERE a.id = b.id;";
