@@ -1,10 +1,11 @@
 Install instructions: At least the way I did it. 
 
-    Create a subdir "webcal"
+    Create a subdir "webcal" - or calendar or feefiefoo...
     mv [dot]dbconnect.php to webcal/.dbconnect.php and configure
     Rename adminsub to .s0m3randOmStrIng  - [dot]some...
     Edit index.php - find "admin" and change href to [.some random string]
-    Create you DB (from README) and install the 2 DB tables.
+    Create you DB (from README) and install the 2 DB tables.  Edit enums as you see fit.
+       In .somerand... edit new.php to match
     Spend the next hour or two debugging what I've missed ...
 
 
