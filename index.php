@@ -98,6 +98,7 @@ if ( isset ($_GET['month']))
 $setcat = $_GET['setcat'];
 echo "<form action=index.php method=POST>";
 
+# Jump to year:month - 202409 = sept 2024.  9=sept current yr. 20243= march 2024.
 $moday = $_POST['moday'];
 switch (strlen($moday))
 {
@@ -112,6 +113,8 @@ switch (strlen($moday))
           $year  = substr($moday, 0,4); break;
   default: break;
 }
+
+# Clicking on prev/next month increments month - check for going from Dec to Jan
 $monthm = $_POST['monthm_x']; #get month +
 $monthp = $_POST['monthp_x']; #get month -
 if ($monthm) $month--;
@@ -127,9 +130,10 @@ echo "<input type=hidden name=year value=$year>";
 
 $mw  = sprintf("%4d%02d%02d", $year, $month, 01);
 $m1  = sprintf("%02d", $month);
-$m2  = date('F Y', strtotime($mw));
+$m2  = date('F Y', strtotime($mw)); # month year for header
 $rmo = date('F', strtotime($mw));
 
+# Start Calendar
 echo "<table border=0 width=95% align=center>
     </td></tr>
   <tr height=100px>
@@ -137,6 +141,7 @@ echo "<table border=0 width=95% align=center>
       <input type=image src=https://$Home/images/leftarrow.gif alt=Submit value=prev name=monthm />
     </td>
     <td align=center ><H2><br><b>$m2</b></H2>";
+# category 1 is Paid & Sponsored. Cat 2 is Free or Discounted that can be bumped for cat 1 events
 if ($setcat == 0) { $sel0='selected'; }
 if ($setcat == 1) { $sel1='selected'; }
 if ($setcat == 2) { $sel2='selected'; }
@@ -154,7 +159,7 @@ echo "</td></tr></table>";
 echo "</td></tr>";
 echo "<tr height=100px><td colspan=3>";
 
-exec("cal $month $year | tr -d '_' | tr -d '\b'", $month1);
+exec("cal $month $year | tr -d '_' | tr -d '\b'", $month1); # Use system "cal" command
 $week = array_slice($month1, 2);
 $x    = substr($week[0], -1);
 $day  = $x - 6;
@@ -168,18 +173,18 @@ $som = strtotime(sprintf("%4d%02d%02d", $year, $m1, "01"));
 $eom = strtotime(sprintf("%4d%02d%02d235959", $year, $m1, $last));
 $now = strtotime("now");
 
-$carray = array_fill(0, 32, array_fill(0,0, ''));
+$carray = array_fill(0, 32, array_fill(0,0, ''));  # array ( array () ) - for 31 days
 
-include './dbconnect.php';
+include './dbconnect.php'; 
 $getcat = "";
-switch ($setcat) {
+switch ($setcat) { # display all or cat 1 or cat 1 events
     case 0: $getcat = ""; break;
     case 1: $getcat = "and category = 1 "; break;
     case 2: $getcat = "and category = 2 "; break;
     default: echo "WTFO<br>"; break;
 }
 
-#once
+# once
 $q1 = "select id, date, description, category, duration from cal_entry where repeats = 'once' and date between $som and $eom $getcat order by date desc;";
 $r1 = mysqli_query($newdb, $q1);
 
@@ -226,6 +231,7 @@ while ($r = mysqli_fetch_array($r1)) {
     }
 }
 
+#sort each day by time, category
 for ($n = 0; $n <= $last; $n++)
     sort($carray[$n]);
 
@@ -235,7 +241,7 @@ foreach ($week as $w) {
     echo "<tr height=100px>\n";
     for ($d = 0; $d <= 6; $d++) {
       $date = sprintf("%4d%02d%02d", $year, $month, $day);
-      do_day($day, $carray[$day], $date, $today, $carray[5]);
+      do_day($day, $carray[$day], $date, $today, $carray[5]);  # do each day in the table
       
       if ($day == $last) {
         while ($d < 6) {
