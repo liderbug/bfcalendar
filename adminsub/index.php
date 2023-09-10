@@ -18,6 +18,7 @@ var day;
 </head>
 <body>
 <?php
+# This is the admin page - cause page to display admin functions like "Add" and href links for editing.
 echo "<div class=text-center><a href=edit.php>EDIT</a></div>";
 include '../index.php';
 ?>
