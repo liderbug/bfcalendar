@@ -1,8 +1,8 @@
-<body bgcolor=#afa>
+<body bgcolor=#afa> <!-- I like this color -->
   <center><H3>EDIT</H3>
   <?php
   date_default_timezone_set('America/Denver');
-  function get_desc ($newdb)
+  function get_desc ($newdb) # the 2 tables descriptions
   {
     global $cols;
     $d = mysqli_query ($newdb, "desc cal_entry;");
@@ -15,7 +15,7 @@
   include '../.dbconnect.php';
   $cols = array ();
   echo "<form action=edit.php method=POST>";
-  $indate = $_GET['indate']; 
+  $indate = $_GET['indate']; # where to return to in index.php
   $query = $_POST['query'];
   $date = $_POST['date'];
   $iyear = substr($indate, 0,4);
@@ -27,7 +27,7 @@
   $month  = $_POST['month']; if ($month == '') $month   = $_GET['month'];
 
   $descx = array ( "DB id event", "Initial date, sets day of week", "Lenght in hours", "Does not exist after", "Once? Every Tues? Third Thur?", "Name of event", "If 2 this event can be bumped", "DB id misc", "Notes", "Who? How?", "In the building? Park?", "Paid? Sponsered? Free?", "When?", "Who created");
-  if ($idg > '')
+  if ($idg > '') # we have a ID to edit
   {
     get_desc ($newdb);
     $q = "select e.*, m.* from cal_entry e, cal_misc m where e.id = $idg and m.id = e.id;";
@@ -35,6 +35,7 @@
     $r = mysqli_fetch_row ($q1);
     $res = array_combine($cols, $r);
     $retdate = "";
+    # display the event for editing
     echo "<table border=5>";
     for ($n=0; $n<sizeof($cols); $n++)
     {
@@ -72,7 +73,6 @@ echo "
 <option value=Parking $s5>Parking
 <option value=Other $s6>Other
 </select>
-$x
 </td>";
 } else
 if ( strstr ($cols[$n], 'type'))
@@ -93,7 +93,6 @@ echo "<td><select name=btype>
 <option value=Sponsored $s4>Sponsored
 <option value=Other $s5>Other
 </select>
-$x
 </td>";
 } else
   echo "<td><input type=text name=$cols[$n] value='$r[$n]' size=25></td><td>$descx[$n]</td></tr>\n";
@@ -136,7 +135,6 @@ $x
             $qud = preg_replace("/,([^,]+)$/", "", $qud);
             $qud .= " WHERE a.id = b.id;";
             $d = mysqli_query ($newdb, $qud);
-#xcal
             echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
             break;
       case 'Cancel':
