@@ -42,15 +42,7 @@ echo "
 <option value=Sponsored>Sponsored
 <option value=Other>Other
 </select>
-
  * Paid, Discount, Free, </td></tr>
-
- `location` enum('Club','Club+Pavilion','Pavilion','N40','Parking') DEFAULT 'Club',
-     `type` enum('Paid','Discount','Free','Sponsored') DEFAULT NULL,
-
-<!--tr><td>ModDate</td><td>
-<input type='datetime-local' name='mod'>
-</td></tr-->
 <tr><td>ByWho</td><td><input type=text name=bywho size=40 ></td></tr>
 </table>
 <input type=submit name=addevent value=SAVE>
@@ -60,7 +52,6 @@ include '../.dbconnect.php';
 $indate = $_POST['date'];
 $year = substr($indate, 0,4);
 $month = substr($indate, 5,2);
-echo "<pre></center>";
 
 $list = array ('date', 'dur', 'end', 'rep', 'name', 'desc', 'contact', 'location', 'rtype', 'moddate', 'who','cat');
 foreach ($list as $l) { $$l = $_POST [$l]; }
@@ -68,7 +59,7 @@ $name = str_replace ("'", "\\'", $name);
 $date = strtotime($date);
 $end = strtotime($end);
 $moddate = strtotime('now');
-#exec ("grep 44foo4fee5 /home/chulid/logs/blkfst.com/https/access.log | cut -d' ' -f3 | grep -v '-' | tail -1", $who);
+exec ("grep [your admin subdir] [your host logs location]/https/access.log | tail -1 | cut -d' ' -f3", $who);
 $end = ( $end == '' ) ? $date+(3600)*$dur:$end;
 $q1i = "insert into cal_entry values (0, $date, $dur, $end, '$rep', '$name', '$cat');";
 $r1 = mysqli_query ($newdb, $q1i);
@@ -76,7 +67,6 @@ $id = mysqli_query ($newdb, "select max(id) from cal_entry;");
 $id1 = mysqli_fetch_row ($id);
 $q2i = "insert into cal_misc values ($id1[0], '$desc', '$contact', '$location', '$rtype', $moddate, '$who[0]');";
 $r2 = mysqli_query ($newdb, $q2i);
-echo "<input type=button value=CAL onclick=window.location.href=index.php>";
 echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
 }
 
