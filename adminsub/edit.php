@@ -15,12 +15,11 @@
   include '../.dbconnect.php';
   $cols = array ();
   echo "<form action=edit.php method=POST>";
-  
+  $indate = $_GET['indate']; 
   $query = $_POST['query'];
   $date = $_POST['date'];
-  $year = substr($indate, 0,4);
-  $month = substr($indate, 5,2);
-
+  $iyear = substr($indate, 0,4);
+  $imonth = substr($indate, 4,2);
   $word = $_POST['word'];
   $id = $_POST['id'];
   $idg = $_GET['idg'];
@@ -28,7 +27,6 @@
   $month  = $_POST['month']; if ($month == '') $month   = $_GET['month'];
 
   $descx = array ( "DB id event", "Initial date, sets day of week", "Lenght in hours", "Does not exist after", "Once? Every Tues? Third Thur?", "Name of event", "If 2 this event can be bumped", "DB id misc", "Notes", "Who? How?", "In the building? Park?", "Paid? Sponsered? Free?", "When?", "Who created");
-
   if ($idg > '')
   {
     get_desc ($newdb);
@@ -54,7 +52,51 @@
         }
         echo "<td><input type='datetime-local' id='$cols[$n]' name='$cols[$n]' value='$dt'> </td><td>$descx[$n]</td>";
       } else {
-        echo "<td><input type=text name=$cols[$n] value='$r[$n]' size=25></td><td>$descx[$n]</td></tr>\n";
+if ( strstr ($cols[$n], 'location'))
+{
+$l1 = array ("Club", "Pavilion", "Club+Pavilion", "N40", "Parking", "Other");
+$x=1;
+foreach ($l1 as $l)
+{
+if ("$l" == "$r[$n]")
+  break;
+$x++; 
+}
+$s1=$s2=$s3=$s4=$s5=$s6=""; $x = "s$x"; $$x = "selected";
+echo "
+<td><select name=blocation>
+<option value=Club $s1>Club
+<option value=Pavilion $s2>Pavilon
+<option value=Club+Pavilion $s3>Club & Pavilion
+<option value=N40 $s4>N40
+<option value=Parking $s5>Parking
+<option value=Other $s6>Other
+</select>
+$x
+</td>";
+} else
+if ( strstr ($cols[$n], 'type'))
+{
+$l1 = array ("Discount", "Paid", "Free", "Sponsored","Other");
+$x=1;
+foreach ($l1 as $l)
+{
+if ("$l" == "$r[$n]")
+  break;
+$x++; 
+}
+$s1=$s2=$s3=$s4=$s5=$s6=""; $x = "s$x"; $$x = "selected";
+echo "<td><select name=btype>
+<option value=Discount $s1>Discount
+<option value=Paid $s2>Paid
+<option value=Free $s3>Free
+<option value=Sponsored $s4>Sponsored
+<option value=Other $s5>Other
+</select>
+$x
+</td>";
+} else
+  echo "<td><input type=text name=$cols[$n] value='$r[$n]' size=25></td><td>$descx[$n]</td></tr>\n";
       }
     }
     echo "</table><input type=hidden name=aid value=$idg>";
@@ -71,7 +113,7 @@
             $qudm = "delete from cal_misc  where id = $id;";
             $d = mysqli_query ($newdb, $qude);
             $d = mysqli_query ($newdb, $qudm);
-            echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
+            echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
             break;
       case 'Update': get_desc ($newdb);
            $id = $_POST['aid'];
@@ -94,13 +136,14 @@
             $qud = preg_replace("/,([^,]+)$/", "", $qud);
             $qud .= " WHERE a.id = b.id;";
             $d = mysqli_query ($newdb, $qud);
-            echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
+#xcal
+            echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
             break;
       case 'Cancel':
-            echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
+            echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
       break;
       case 'Calendar':
-            echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
+            echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
       break;
       case 'search':
       if ($date > '')
