@@ -59,17 +59,15 @@
       } else {
         if ( strstr ($cols[$n], 'location'))
         {
-          do_enum ($newdb, 'cal_misc', 'location', $r[$n]);
-          echo "</tr>\n";
+          echo "<td>";
+          do_enum ($newdb, 'cal_misc', 'location', $r[$n], 'b');
+          echo "</td></tr>\n";
         } else
         if ( strstr ($cols[$n], 'paytype'))
         {
-          
-          $ecol = "paytype";
-          $enum2 = get_enum_select ($newdb, 'cal_misc', $ecol);
-          $sel = which_enum_selected ($enum2, $r[$n]);
-          gen_enum_select ($enum2, $ecol, $sel, 'b');
-          echo "</tr>\n";
+          echo "<td>";
+          do_enum ($newdb, 'cal_misc', 'paytype', $r[$n], 'b');
+          echo "</td></tr>\n";
         } else
         echo "<td><input type=text name=$cols[$n] value='$r[$n]' size=25></td><td>$descx[$n]</td></tr>\n\n";
       }
