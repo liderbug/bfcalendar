@@ -1,6 +1,6 @@
 
 # BlackForestCalendar
-First post - hope I got everything right and I hope my code is readable.
+Hope I got everything right and I hope my code is readable.
 
 This project started when PHP went from 7.4 to 8.1 and the K5N calendar broke. There is a minor difference between K5N and this calendar.  K5N uses extensive use of CSS, extensive use of Javascript and lots of nested <div's.  This calendar attempts to go the other way. KISS.
 
@@ -25,8 +25,8 @@ and
      `id` int NOT NULL,
      `note` text,
      `contact` varchar(100) DEFAULT NULL,
-     `location` enum('Club','Club+Pavilion','Pavilion','N40','Parking') DEFAULT 'Club',
-     `type` enum('Paid','Discount','Free','Sponsored') DEFAULT NULL,
+     `location` enum('Club','Club+Pavilion','Pavilion','N40','Parking','Other') DEFAULT 'Club',
+     `paytype` enum('Paid','Discount','Free','Sponsored','Other') DEFAULT NULL,
      `mod_date` int DEFAULT NULL,
      `create_by` varchar(25) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
