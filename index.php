@@ -175,7 +175,7 @@ $now = strtotime("now");
 
 $carray = array_fill(0, 32, array_fill(0,0, ''));  # array ( array () ) - for 31 days
 
-include './dbconnect.php'; 
+include './.dbconnect.php'; 
 $getcat = "";
 switch ($setcat) { # display all or cat 1 or cat 1 events
     case 0: $getcat = ""; break;
