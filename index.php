@@ -81,7 +81,7 @@ function do_day($day, $darray, $date, $today)
 }
 
 # ----- main () -----
-$Home = "[yourhost]/bfcalendar"; # set this to "yourhost.com/[pwd]"
+$Home = "bfcalendar"; # set this to "yourhost.com/[pwd]"
 date_default_timezone_set('America/Denver');
 
 if ( isset ($_GET['month']))
