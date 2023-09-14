@@ -1,8 +1,8 @@
 <?php
 $hostname = "[hostname]";
-$username = "[user]";
-$password = "[pw]";
-$database = "[dbname]";
+$username = "[username]";
+$password = "[password]";
+$database = "[database]";
 
 $newdb = mysqli_connect($hostname, $username, $password, $database);
 if (mysqli_connect_errno()) {
