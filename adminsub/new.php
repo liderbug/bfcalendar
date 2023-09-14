@@ -28,19 +28,15 @@
     <tr><td><hr></td><td><hr></td></tr>
     <tr><td>Note</td><td><input type=text name=desc size=40 ></td></tr>
     <tr><td>Contact</td><td><input type=text name=contact size=40 ></td></tr>";
+        
+    echo "<tr><td>Location</td><td>";
+    do_enum ($newdb, 'cal_misc', 'location', $r[$n], 'b');
+    echo "</td></tr>";
     
-    $ecol = "location";
-    echo "<td>$ecol</td>";
-    $enum1 = get_enum_select ($newdb, 'cal_misc', $ecol);
-    $sel = which_enum_selected ($enum1, $r[$n]);
-    gen_enum_select ($enum1, $ecol, $sel, 'b');
-    echo "</tr><tr>";
-    $ecol = "paytype";
-    echo "<td>$ecol</td>";
-    $enum1 = get_enum_select ($newdb, 'cal_misc', $ecol);
-    $sel = which_enum_selected ($enum1, $r[$n]);
-    gen_enum_select ($enum1, $ecol, $sel, 'b');
-    
+    echo "<tr><td>Paytype</td><td>";
+    do_enum ($newdb, 'cal_misc', 'paytype', $r[$n], 'b');
+    echo "</td></tr>";
+  
     echo "<tr><td>ByWho</td><td><input type=text name=bywho size=40 ></td></tr>
     </table>
     <input type=submit name=addevent value=SAVE>
