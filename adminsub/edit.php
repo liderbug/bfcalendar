@@ -1,4 +1,4 @@
-  
+ 
   <body bgcolor=#afa> <!-- I like this color -->
   <center><H3>EDIT</H3>
   <?php
@@ -10,25 +10,24 @@
   {
     global $cols;
     $d = mysqli_query ($newdb, "desc cal_entry;");
-  while ($e = mysqli_fetch_row ($d)) { $cols[] .= "a$e[0]"; }
+    while ($e = mysqli_fetch_row ($d)) { $cols[] .= "a$e[0]"; }
     $d = mysqli_query ($newdb, "desc cal_misc;");
-  while ($e = mysqli_fetch_row ($d)) { $cols[] .= "b$e[0]"; }
+    while ($e = mysqli_fetch_row ($d)) { $cols[] .= "b$e[0]"; }
   }
   
   # ========== main  ==========
   include '../.dbconnect.php';
   $cols = array ();
   echo "<form action=edit.php method=POST>";
+
+  $list = array ('query', 'date', 'word', 'id', 'year', 'month', 'aid');
+  foreach ($list as $l) { $$l = $_POST[$l]; }
   $indate = $_GET['indate']; # where to return to in index.php
-  $query = $_POST['query'];
-  $date = $_POST['date'];
   $iyear = substr($indate, 0,4);
   $imonth = substr($indate, 4,2);
-  $word = $_POST['word'];
-  $id = $_POST['id'];
   $idg = $_GET['idg'];
-  $year   = $_POST['year']; if ($year == '') $year   = $_GET['year'];
-  $month  = $_POST['month']; if ($month == '') $month   = $_GET['month'];
+  if ($year == '') $year   = $_GET['year'];
+  if ($month == '') $month   = $_GET['month'];
   
   $descx = array ( "DB id event", "Initial date, sets day of week", "Lenght in hours", "Does not exist after", "Once? Every Tues? Third Thur?", "Name of event", "If 2 this event can be bumped", "DB id misc", "Notes", "Who? How?", "In the building? Park?", "Paid? Sponsered? Free?", "When?", "Who created");
   if ($idg > '') # we have a ID to edit
@@ -43,9 +42,11 @@
     echo "<table border=5>";
     for ($n=0; $n<sizeof($cols); $n++)
     {
+      echo "<tr>";
       $r[$n] = htmlspecialchars($r[$n],ENT_QUOTES);
       $col = substr($cols[$n], 1);
-      echo " <tr> <td>$col</td>";
+      echo " <td>$col</td>";
+      if (strstr($cols[$n], "category")) { $hr=1; }
       if (strstr($cols[$n], "date"))
       {
         $dt = date('Y-m-d H:i', $r[$n]);
@@ -59,18 +60,16 @@
       } else {
         if ( strstr ($cols[$n], 'location'))
         {
-          echo "<td>";
-          do_enum ($newdb, 'cal_misc', 'location', $r[$n], 'b');
-          echo "</td></tr>\n";
+          echo "<td>"; do_enum ($newdb, 'cal_misc', 'location', $r[$n], 'b'); echo "</td>\n";
         } else
         if ( strstr ($cols[$n], 'paytype'))
         {
-          echo "<td>";
-          do_enum ($newdb, 'cal_misc', 'paytype', $r[$n], 'b');
-          echo "</td></tr>\n";
+          echo "<td>"; do_enum ($newdb, 'cal_misc', 'paytype', $r[$n], 'b'); echo "</td>\n";
         } else
-        echo "<td><input type=text name=$cols[$n] value='$r[$n]' size=25></td><td>$descx[$n]</td></tr>\n\n";
+        echo "<td><input type=text name=$cols[$n] value='$r[$n]' size=25></td><td>$descx[$n]</td>\n\n";
       }
+      echo "</tr>";
+      if ($hr == 1) { echo "<tr><td colspan=3><hr></td></tr>"; $hr=0; }
     }
     echo "</table><input type=hidden name=aid value=$idg>";
     echo "<input type=hidden name=year value=$year>";
@@ -89,7 +88,6 @@
       echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
       break;
       case 'Update': get_desc ($newdb);
-      print_r ($_POST);
       $id = $_POST['aid'];
       $qud =  "UPDATE cal_entry a INNER JOIN cal_misc b ON (a.id = $id and a.id = b.id) set ";
       for ($n=0; $n<sizeof($cols); $n++)
@@ -130,7 +128,7 @@
         echo "<table border=1>";
         while ($r = mysqli_fetch_array ($q1))
         {
-          echo "<tr><td><a href=edit.php?idg=$r[0]>$r[0]</a></td><td>$r[5]</td></tr>";
+          echo "<td><a href=edit.php?idg=$r[0]>$r[0]</a></td><td>$r[5]</td>";
         }
         echo "</table>";
       } else if ($word > '')
@@ -149,9 +147,6 @@
       default:
       echo "In 'Word' anything in 'Name' or sort by 'Date'<br>
       <table border=1 width=80% align=center>
-      <tr><td>ID</td><td>
-      <input type=text name=id>
-      </td></tr>
       <tr><td>Word</td><td>
       <input type=text name=word>
       </td></tr>
