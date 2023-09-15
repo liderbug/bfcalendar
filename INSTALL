@@ -8,5 +8,20 @@ Install instructions: At least the way I did it.
     Create you DB (from README) and install the 2 DB tables.  Edit enums as you see fit.
        In .somerand... edit new.php to match
     Spend the next hour or two debugging what I've missed ...
+In the admin sub-directory you need the file ".htaccess"
+
+AuthType Basic
+AuthName "MY Calendar"
+AuthUserFile "[somewhere]/.htpasswd/[userfilename]"
+require valid-user
+RewriteEngine on
+RewriteRule ^(.*)\.[\d]{10}\.(css|js)$ $1.$2 [L]
+
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Pragma "no-cache"
+  Header set Expires 0
+</IfModule>
+
 
 
