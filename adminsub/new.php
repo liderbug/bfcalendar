@@ -25,7 +25,7 @@
     <tr><td>Repeat</td><td><input type=text name=rep size=30 value=once> * 'once' or 'w,3' or 'w,2,4'</td></tr>
     <tr><td>Event</td><td><input type=text name=name size=40 ></td></tr>
     <tr><td>Category</td><td><input type=text name=cat size=10 value=2> * 1=Reserved, 2=CommEvent</td></tr>
-    <tr><td><hr></td><td><hr></td></tr>
+    <tr><td colspan=3><hr></td></tr>
     <tr><td>Note</td><td><input type=text name=desc size=40 ></td></tr>
     <tr><td>Contact</td><td><input type=text name=contact size=40 ></td></tr>";
         
@@ -40,6 +40,7 @@
     echo "<tr><td>ByWho</td><td><input type=text name=bywho size=40 ></td></tr>
     </table>
     <input type=submit name=addevent value=SAVE>
+    <button onclick=history.go(-1);> BACK </button>
     ";
   } else {
     $indate = $_POST['date'];
