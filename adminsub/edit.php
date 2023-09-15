@@ -1,4 +1,3 @@
-  
   <body bgcolor=#afa> <!-- I like this color -->
   <center><H3>EDIT</H3>
   <?php
@@ -43,9 +42,11 @@
     echo "<table border=5>";
     for ($n=0; $n<sizeof($cols); $n++)
     {
+      echo "<tr>";
       $r[$n] = htmlspecialchars($r[$n],ENT_QUOTES);
       $col = substr($cols[$n], 1);
-      echo " <tr> <td>$col</td>";
+      echo " <td>$col</td>";
+      if (strstr($cols[$n], "category")) { $hr=1; }
       if (strstr($cols[$n], "date"))
       {
         $dt = date('Y-m-d H:i', $r[$n]);
@@ -59,18 +60,16 @@
       } else {
         if ( strstr ($cols[$n], 'location'))
         {
-          echo "<td>";
-          do_enum ($newdb, 'cal_misc', 'location', $r[$n], 'b');
-          echo "</td></tr>\n";
+          echo "<td>"; do_enum ($newdb, 'cal_misc', 'location', $r[$n], 'b'); echo "</td>\n";
         } else
         if ( strstr ($cols[$n], 'paytype'))
         {
-          echo "<td>";
-          do_enum ($newdb, 'cal_misc', 'paytype', $r[$n], 'b');
-          echo "</td></tr>\n";
+          echo "<td>"; do_enum ($newdb, 'cal_misc', 'paytype', $r[$n], 'b'); echo "</td>\n";
         } else
-        echo "<td><input type=text name=$cols[$n] value='$r[$n]' size=25></td><td>$descx[$n]</td></tr>\n\n";
+        echo "<td><input type=text name=$cols[$n] value='$r[$n]' size=25></td><td>$descx[$n]</td>\n\n";
       }
+      echo "</tr>";
+      if ($hr == 1) { echo "<tr><td colspan=3><hr></td></tr>"; $hr=0; }
     }
     echo "</table><input type=hidden name=aid value=$idg>";
     echo "<input type=hidden name=year value=$year>";
@@ -130,7 +129,7 @@
         echo "<table border=1>";
         while ($r = mysqli_fetch_array ($q1))
         {
-          echo "<tr><td><a href=edit.php?idg=$r[0]>$r[0]</a></td><td>$r[5]</td></tr>";
+          echo "<td><a href=edit.php?idg=$r[0]>$r[0]</a></td><td>$r[5]</td>";
         }
         echo "</table>";
       } else if ($word > '')
@@ -140,8 +139,9 @@
         echo "<table border=1>";
         while ($r = mysqli_fetch_array ($q1))
         {
-          echo "<tr><td><a href=edit.php?idg=$r[0]>$r[0]</a></td><td>$r[5]</td></tr>";
+          echo "<td><a href=edit.php?idg=$r[0]>$r[0]</a></td><td>$r[5]</td>";
         }
+        echo "</tr>";
         echo "</table>";
       }
       break;
