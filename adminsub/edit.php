@@ -123,12 +123,11 @@
         $date = strtotime($date);
         $sdate = $date - 86400;
         $edate = $date + 86400;
-        echo "select * from cal_entry where date between $sdate and $edate;<br>";
         $q1 = mysqli_query ($newdb, "select * from cal_entry where date between $sdate and $edate;");
         echo "<table border=1>";
         while ($r = mysqli_fetch_array ($q1))
         {
-          echo "<td><a href=edit.php?idg=$r[0]>$r[0]</a></td><td>$r[5]</td>";
+          echo "<tr><td><a href=edit.php?idg=$r[0]>$r[0]</a></td><td>$r[5]</td></tr>";
         }
         echo "</table>";
       } else if ($word > '')
