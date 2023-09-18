@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # this script creates a hidden sub-directory for admin functions
-# it then modifies index.php for that hidden directory
 # if you want you can, after the fact, rename it.
 
 hiddir=`tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo ''`
