@@ -2,7 +2,7 @@
 <script type="text/javascript">
 function selcat(val) {
   var val;
-  var  url = `https://yourhost]/webcal/index.php?setcat=${val}`;
+  var  url = `https://[yourhost]/webcal/index.php?setcat=${val}`;
   window.location.href = url;
 }
 </script>
