@@ -8,6 +8,7 @@ function selcat(val) {
 </script>
 <style>
 .text-right { text-align: right; }
+td { color: black; font-size: 12px; vertical-align: top; }
 </style>
 </head>
 
@@ -45,7 +46,7 @@ function do_day($day, $darray, $date, $today)
 	$cwd = getcwd();
 	if ( strstr($cwd, "foo4fee5") ) { $pw=1; }
     if ($day > 0) {
-        $bgc = ($date == $today) ? "lightgreen" : "yellow";
+        $bgc = ($date == $today) ? "#fcf7f" : "white";
         echo "<td width=14% valign=top bgcolor=$bgc>$day";
 		if ($pw == 1) { 
 			echo "<a href=new.php?date=$date> Add</a>";
@@ -61,7 +62,7 @@ function do_day($day, $darray, $date, $today)
                     $B = date('H', $k[2]);
                     if ("$H" == "12 AM")
                         $H = "Allday<br>";
-                    if ($pw) { $block = 0; $k1 = $k[1]; }
+                    if ($pw == 1) { $block = 0; $k1 = $k[1]; }
                     if ($block <= $B) {
                         $block = 0;
                         if ($pw) echo "<a href=edit.php?idg=$k[5]>";
