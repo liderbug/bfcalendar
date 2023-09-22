@@ -136,7 +136,6 @@ $rmo = date('F', strtotime($mw));
 
 # Start Calendar
 echo "<table border=0 width=95% align=center>
-    </td></tr>
   <tr height=100px>
     <td align=left valign=middle width=20%>
       <input type=image src=https://$Home/images/leftarrow.gif alt=Submit value=prev name=monthm />
