@@ -46,7 +46,7 @@ function do_day($day, $darray, $date, $today)
 	$cwd = getcwd();
 	if ( strstr($cwd, "foo4fee5") ) { $pw=1; }
     if ($day > 0) {
-        $bgc = ($date == $today) ? "#fcf7f" : "white";
+        $bgc = ($date == $today) ? "#fcf37f" : "white";
         echo "<td width=14% valign=top bgcolor=$bgc>$day";
 		if ($pw == 1) { 
 			echo "<a href=new.php?date=$date> Add</a>";
@@ -251,7 +251,7 @@ foreach ($week as $w) {
         }
         echo "</tr></table>";
 		 echo "<input type=hidden name=adom value='$month,$year,1,2,3'>
-                    </table></td></tr></table>";
+                    </table></td></tr></table></form>";
         exit;
       }
       $day++;
