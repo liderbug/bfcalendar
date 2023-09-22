@@ -19,9 +19,9 @@ function lilo ()
   $cwd = getcwd();
   if ( strstr($cwd, "foo4fee5") )
   { 
-    echo "<p valign=top class='text-right'><small><a href=../index.php>logout</a></p>";
+    echo "<p valign=top class='text-right'><a href=../index.php>logout</a></p>";
   } else {
-    echo "<p class='text-right'><small><a href=44foo4fee5>admin</a></p>";
+    echo "<p class='text-right'><a href=44foo4fee5>admin</a></p>";
   }
 }
 
@@ -65,8 +65,8 @@ function do_day($day, $darray, $date, $today)
                     if ($pw == 1) { $block = 0; $k1 = $k[1]; }
                     if ($block <= $B) {
                         $block = 0;
-                        if ($pw) echo "<a href=edit.php?idg=$k[5]>";
-                        echo "<small>$H($k[4]); $k1<br> &nbsp; $k[3]</small><p>\n";
+                        if ($pw == 1) echo "<a href=edit.php?idg=$k[5]>";
+                        echo "$H($k[4]); $k1<br> &nbsp; $k[3]<p>\n";
                         if ($pw) echo "</a>";
                     }
                     if ($k[1] == 1) {
@@ -250,16 +250,12 @@ foreach ($week as $w) {
           do_day(0, $carray, $date, $today, $carray[5]);
         }
         echo "</tr></table>";
-		 echo "<input type=hidden name=adom value='$month,$year,1,2,3'>";
+		 echo "<input type=hidden name=adom value='$month,$year,1,2,3'>
+                    </table></td></tr></table>";
         exit;
       }
       $day++;
     }
     echo "</tr>\n";
 }
-
-
 ?>
-</table>
-<td><tr></table>
-</form>
