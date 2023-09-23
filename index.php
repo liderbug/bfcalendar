@@ -87,9 +87,12 @@ $Home = "HOSTNAME/webcal"; # set this to "yourhost.com/[pwd]"
 date_default_timezone_set('America/Denver');
 
 $adom = ( isset ($_POST['adom'])) ? $_POST['adom']: null;
-$a = explode (",", $adom);
-$month = $a[0];
-$year = $a[1];
+if ( ! empty($adom))
+{
+  $a = explode (",", $adom);
+  $month = $a[0];
+  $year = $a[1];
+}
 
 $setcat = $_GET['setcat'];
 echo "<form action=index.php method=POST>";
