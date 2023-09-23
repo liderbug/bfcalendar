@@ -239,7 +239,7 @@ echo "<table border=1 width=100%><tr height=100px><th>Sunday</th><th>Monday</th>
 foreach ($week as $w) {
     $w = trim($w);
     echo "<tr height=100px>\n";
-    for ($d = 0; $d <= 6; $d++) {
+    for ($d = 0; $d < 7; $d++) {
       $date = sprintf("%4d%02d%02d", $year, $month, $day);
       do_day($day, $carray[$day], $date, $today, $carray[5]);  # do each day in the table
       
@@ -248,13 +248,11 @@ foreach ($week as $w) {
           $d++;
           do_day(0, $carray, $date, $today, $carray[5]);
         }
-        echo "</tr></table>";
-		 echo "<input type=hidden name=adom value='$month,$year,1,2,3'>
-                    </table></td></tr></table></form>";
+	echo "<input type=hidden name=adom value='$month,$year,1,2,3'>
+        </td></tr></table>";
         exit;
       }
       $day++;
     }
-    echo "</tr>\n";
-}
 ?>
+</form>
