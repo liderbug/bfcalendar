@@ -254,5 +254,6 @@ foreach ($week as $w) {
       }
       $day++;
     }
+}
 ?>
 </form>
