@@ -86,16 +86,10 @@ function do_day($day, $darray, $date, $today)
 $Home = "HOSTNAME/webcal"; # set this to "yourhost.com/[pwd]"
 date_default_timezone_set('America/Denver');
 
-if ( isset ($_GET['month']))
-{
-  $month = $_GET['month'];
-  $year = $_GET['year'];
-} else {
-  $adom = $_POST['adom'];
-  $a = explode (",", $adom);
-  $month = $a[0];
-  $year = $a[1];
-}
+$adom = ( isset ($_POST['adom'])) ? $_POST['adom']: null;
+$a = explode (",", $adom);
+$month = $a[0];
+$year = $a[1];
 
 $setcat = $_GET['setcat'];
 echo "<form action=index.php method=POST>";
@@ -249,8 +243,8 @@ foreach ($week as $w) {
           $d++;
           do_day(0, $carray, $date, $today, $carray[5]);
         }
-	echo "<input type=hidden name=adom value='$month,$year,1,2,3'>
-        </td></tr></table>";
+	echo "</tr></table>";
+	echo "<input type=hidden name=adom value='$month,$year,1,2,3'>";
         exit;
       }
       $day++;
