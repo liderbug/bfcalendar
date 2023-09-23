@@ -43,8 +43,9 @@ function dow($ts)
 
 function do_day($day, $darray, $date, $today)
 {
-	$cwd = getcwd();
-	if ( strstr($cwd, "foo4fee5") ) { $pw=1; }
+   $l1='';
+   $cwd = getcwd();
+   $pw = ( strstr($cwd, "44foo4fee") ) ? 1:0;
     if ($day > 0) {
         $bgc = ($date == $today) ? "#fcf37f" : "white";
         echo "<td width=14% valign=top bgcolor=$bgc>$day";
