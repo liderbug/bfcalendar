@@ -17,11 +17,11 @@ td { color: black; font-size: 12px; vertical-align: top; }
 function lilo ()
 {
   $cwd = getcwd();
-  if ( strstr($cwd, "foo4fee5") )
+  if ( strstr($cwd, "hidsubdir") )
   { 
     echo "<p valign=top class='text-right'><a href=../index.php>logout</a></p>";
   } else {
-    echo "<p class='text-right'><a href=44foo4fee5>admin</a></p>";
+    echo "<p class='text-right'><a href=hidsubdir>admin</a></p>";
   }
 }
 
@@ -45,7 +45,7 @@ function do_day($day, $darray, $date, $today)
 {
    $l1='';
    $cwd = getcwd();
-   $pw = ( strstr($cwd, "44foo4fee") ) ? 1:0;
+   $pw = ( strstr($cwd, "hidsubdir") ) ? 1:0;
     if ($day > 0) {
         $bgc = ($date == $today) ? "#fcf37f" : "white";
         echo "<td width=14% valign=top bgcolor=$bgc>$day";
