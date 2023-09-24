@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # this script creates a hidden sub-directory for admin functions
-# if you want you can, after the fact, rename it.
+# if you want you can, after the fact, rename it. 
 
 hiddir=`tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo ''`
 #hiddir="yourchoice"
