@@ -246,12 +246,13 @@ foreach ($week as $w) {
           $d++;
           do_day(0, $carray, $date, $today, $carray[5]);
         }
-	echo "</tr></table>";
+	echo "</tr></table></td></tr></table>";
 	echo "<input type=hidden name=adom value='$month,$year,1,2,3'>";
         exit;
       }
       $day++;
     }
+    echo "</tr>";
 }
 ?>
 </form>
