@@ -8,7 +8,7 @@ hiddir=`tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo ''`
 echo $hiddir
 mv adminsub .$hiddir
 mv '[dot]dbconnect.php' .dbconnect.php
-sed -i 's/hidsubdir/'$hiddir'/' index.php
+sed -i 's/hidsubdir/'.$hiddir'/' index.php
 sed -i 's/HOSTNAME/'$HOSTNAME'/' index.php
 
 echo -n "Hostname?  " ; read ans
