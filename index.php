@@ -2,7 +2,7 @@
 <script type="text/javascript">
 function selcat(val) {
   var val;
-  var  url = `https://[yourhost]/webcal/index.php?setcat=${val}`;
+  var  url = `/webcal/index.php?setcat=${val}`;
   window.location.href = url;
 }
 </script>
@@ -83,7 +83,6 @@ function do_day($day, $darray, $date, $today)
 }
 
 # ----- main () -----
-$Home = "HOSTNAME/webcal"; # set this to "yourhost.com/[pwd]"
 date_default_timezone_set('America/Denver');
 
 $adom = ( isset ($_POST['adom'])) ? $_POST['adom']: null;
@@ -136,7 +135,7 @@ $rmo = date('F', strtotime($mw));
 echo "<table border=0 width=95% align=center>
   <tr height=100px>
     <td align=left valign=middle width=20%>
-      <input type=image src=https://$Home/images/leftarrow.gif alt=Submit value=prev name=monthm />
+      <input type=image src=/images/leftarrow.gif alt=Submit value=prev name=monthm />
     </td>
     <td align=center ><H2><br><b>$m2</b></H2>";
 # category 1 is Paid & Sponsored. Cat 2 is Free or Discounted that can be bumped for cat 1 events
@@ -152,7 +151,7 @@ echo "<select onchange=selcat(value)>
 </td><td align=right valign=middle width=20%>";
 echo "<table border=0 height=100%><tr><td valign=top>";
 lilo ();
-echo "</td></tr><tr><td valign=top><input type=image src=https://$Home/images/rightarrow.gif alt=Submit value=next name=monthp />";
+echo "</td></tr><tr><td valign=top><input type=image src=/images/rightarrow.gif alt=Submit value=next name=monthp />";
 echo "</td></tr></table>";
 echo "</td></tr>";
 echo "<tr height=100px><td colspan=3>";
