@@ -77,7 +77,7 @@ function do_day($day, $darray, $date, $today)
             }
         }
     } else { # a non-this-month table cell
-        echo "<td width=100 height=100 valign=top bgcolor=pink> </td>\n";
+        echo "<td width=100 height=100 valign=top bgcolor=pink>";
     }
     echo "</td>\n";
 }
