@@ -43,7 +43,7 @@ function dow($ts)
 
 function do_day($day, $darray, $date, $today)
 {
-   $l1='';
+   $k1='';
    $cwd = getcwd();
    $pw = ( strstr($cwd, "hidsubdir") ) ? 1:0;
     if ($day > 0) {
@@ -68,7 +68,7 @@ function do_day($day, $darray, $date, $today)
                         $block = 0;
                         if ($pw == 1) echo "<a href=edit.php?idg=$k[5]>";
                         echo "$H($k[4]); $k1<br> &nbsp; $k[3]<p>\n";
-                        if ($pw) echo "</a>";
+                        if ($pw == 1) echo "</a>";
                     }
                     if ($k[1] == 1) {
                         $block = $B + $k[4];
@@ -85,9 +85,12 @@ function do_day($day, $darray, $date, $today)
 # ----- main () -----
 date_default_timezone_set('America/Denver');
 
-$adom = ( isset ($_POST['adom'])) ? $_POST['adom']: null;
-if ( ! empty($adom))
-{
+if ( isset ($_GET['month']))
+{ 
+  $month = $_GET['month'];
+  $year = $_GET['year']; 
+} else {
+  $adom = $_POST['adom'];
   $a = explode (",", $adom);
   $month = $a[0];
   $year = $a[1];
@@ -236,7 +239,7 @@ echo "<table border=1 width=100%><tr height=100px><th>Sunday</th><th>Monday</th>
 foreach ($week as $w) {
     $w = trim($w);
     echo "<tr height=100px>\n";
-    for ($d = 0; $d < 7; $d++) {
+    for ($d = 0; $d <= 6; $d++) {
       $date = sprintf("%4d%02d%02d", $year, $month, $day);
       do_day($day, $carray[$day], $date, $today, $carray[5]);  # do each day in the table
       
@@ -245,8 +248,12 @@ foreach ($week as $w) {
           $d++;
           do_day(0, $carray, $date, $today, $carray[5]);
         }
-	echo "</tr></table></td></tr></table>";
+	echo "</tr></table>";
 	echo "<input type=hidden name=adom value='$month,$year,1,2,3'>";
+	echo "</table>";
+         echo "<td>
+<tr>
+</table>";
         exit;
       }
       $day++;
