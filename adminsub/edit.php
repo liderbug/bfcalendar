@@ -23,8 +23,6 @@
   $list = array ('query', 'date', 'word', 'id', 'year', 'month', 'aid');
   foreach ($list as $l) { $$l = $_POST[$l]; }
   $indate = $_GET['indate']; # where to return to in index.php
-  $iyear = substr($indate, 0,4);
-  $imonth = substr($indate, 4,2);
   $idg = $_GET['idg'];
   if ($year == '') $year   = $_GET['year'];
   if ($month == '') $month   = $_GET['month'];
@@ -85,7 +83,7 @@
       $qudm = "delete from cal_misc  where id = $id;";
       $d = mysqli_query ($newdb, $qude);
       $d = mysqli_query ($newdb, $qudm);
-      echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
+      echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
       break;
       case 'Update': get_desc ($newdb);
       $id = $_POST['aid'];
@@ -109,13 +107,13 @@
       $qud .= " WHERE a.id = b.id;";
       $d = mysqli_query ($newdb, $qud);
       #echo $qud;
-      echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
+      echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
       break;
       case 'Cancel':
-      echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
+      echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
       break;
       case 'Calendar':
-      echo "<meta http-equiv='refresh' content='0;url=index.php?year=$iyear&month=$imonth' />";
+      echo "<meta http-equiv='refresh' content='0;url=index.php?year=$year&month=$month' />";
       break;
       case 'search':
       if ($date > '')
