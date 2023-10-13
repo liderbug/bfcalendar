@@ -20,7 +20,7 @@ td { color: black; font-size: 12px; vertical-align: top; }
 function lilo ()
 {
   $cwd = getcwd();
-  if ( strstr($cwd, "TOPPTkM8NkxLi") )
+  if ( strstr($cwd, "[hiddensubdir]") )
   { 
     echo "<p valign=top class='text-right'><a href=../index.php>logout</a></p>";
   } else {
