@@ -20,11 +20,11 @@ td { color: black; font-size: 12px; vertical-align: top; }
 function lilo ()
 {
   $cwd = getcwd();
-  if ( strstr($cwd, "[hiddensubdir]") )
+  if ( strstr($cwd, "hidsubdir") )
   { 
     echo "<p valign=top class='text-right'><a href=../index.php>logout</a></p>";
   } else {
-    echo "<p class='text-right'><a href=[hiddenadmindir]>admin</a></p>";
+    echo "<p class='text-right'><a href=hidadmindir>admin</a></p>";
   }
 }
 
@@ -34,7 +34,7 @@ function do_month ( $ots, $x, $mo, $yr)
   $day = date ('d', $ts);
   if ($day == 22)
     $day -= 7;
-
+# php Bug #43452 if Nth dayofweek is same as day 1 then it add 1 week -cira 2007. wtfo
   $dst =  (date ('I', $ts))? 1:0; 
   return ("$ts,$day");
 }
@@ -57,7 +57,7 @@ function do_day($day, $darray, $date, $today)
 {
     $k1 = '';
         $cwd = getcwd();
-    $pw = ( strstr($cwd, ".TOPPTkM8NkxLi") ) ? 1:0;
+    $pw = ( strstr($cwd, "hidsubdir") ) ? 1:0;
     if ($day > 0) {
         $bgc = ($date == $today) ? "#fcf37f" : "white";
         echo "<td width=14% valign=top bgcolor=$bgc>$day";
