@@ -224,12 +224,11 @@ while ($r = mysqli_fetch_array($r1))
     for ($x = 1; $x <= count($i) - 1; $x++) 
     {
     $lweek = 0;
-        switch ($i[0]) {
-            case 'y':
-                if ($r[1] >= $som && $r[1] <= $eom) { $ts = date('j', $r[1]); }
+        switch ($i[0]) 
+        {
+            case 'y': if ($r[1] >= $som && $r[1] <= $eom) { $ts = date('j', $r[1]); }
                 break;
-            case 'm':
-                  $key = array_search($month, $i); 
+            case 'm': $key = array_search($month, $i); 
                   if ( $key > 0 )
                   {
                     $key = $i[$key];
